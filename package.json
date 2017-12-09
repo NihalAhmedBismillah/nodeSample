@@ -1,0 +1,39 @@
+{
+  "name": "service1",
+  "version": "1.0.0",
+  "description": "this is the service which handel address related entity",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Nihal Ahmed",
+  "license": "MIT",
+  "dependencies": {
+    "Faker": "~0.7.2",
+    "async": "^2.1.4",
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "cookie-session": "^2.0.0-alpha.2",
+    "cors": "^2.8.1",
+    "csv-parse": "^1.2.4",
+    "debug": "~2.2.0",
+    "ejs": "^2.5.2",
+    "express": "~4.13.4",
+    "fs": "0.0.1-security",
+    "helmet": "^3.9.0",
+    "jsonwebtoken": "^8.0.0",
+    "method-override": "^2.3.7",
+    "mongodb": "^2.2.24",
+    "morgan": "~1.7.0",
+    "request": "^2.83.0",
+    "rsvp": "^4.0.1",
+    "serve-favicon": "~2.3.0",
+    "shortid": "^2.2.8"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5",
+    "rsvp": "^4.0.1"
+  }
+}
