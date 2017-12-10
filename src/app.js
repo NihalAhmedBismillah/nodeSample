@@ -1,28 +1,46 @@
-const Controller1 = require('./serviceControllers/Controller1');
-const mongodb = require('./dbOperation/mongodb');
-const ExpressApp = require('./setUpApp/ExpressApp');
+/**
+ * Import npm packages
+ */
+const nconf = require('nconf');
+const express = require('express');
+const middleware  = require('./middleware/middleware');
+const mongodb  = require('./db/mongodb');
+const registerControllers  = require('./utility/registerControllers');
 
+let app  = express();
+
+nconf.argv()
+.env()
+.file({ file: './config.json' });
+
+/**
+ * Description : This class use for starting app 
+ */
 class App {
 
-    constructor() {
+   static run() {
 
-    }
+        return new Promise((resolve, reject) => {
 
-    init() {
+              mongodb.connectMongoDb(nconf).then(()=>{
+                 return  middleware.init(app);
+              }).then((data)=>{
+                 return  registerControllers.init(app);
+              }).then((data)=>{
+                  resolve(true);
+              }).catch((error)=>{
+                  reject(error);
+              })
+        }).then((data)=>{
 
-        return new Promise((res, rej) => {
-            let objExpress = new ExpressApp();
-            let objMongodb = new mongodb();
-            const promises = [objExpress.initApp(), objMongodb.connectDb()];
-            Promise.all(promises).then(() => {
-                res(true);
-            })
         })
-
+        
     }
-
 }
-let objApp = new App();
-objApp.init().then(() => {
-    console.log('service 1 started !')
-})
+app.listen(8080);
+// start server 
+App.run().then(()=>{
+    console.log(`server started at port no : ${nconf.get('PORT')}`);
+}).catch((err)=>{ 
+    console.log(`Something went wrong !!${err}`); 
+});
