@@ -4,6 +4,7 @@
   "description": "this is the service which handel address related entity",
   "main": "app.js",
   "scripts": {
+    "start": "node src\\app.js",
     "test": "mocha"
   },
   "author": "Nihal Ahmed",
