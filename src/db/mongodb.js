@@ -26,7 +26,8 @@ class mongoDbOperation {
           console.log('Database connection error occur!', JSON.stringify(err));
           //throw new (Error(err));
           setTimeout(() => {
-            this.connectDb();
+           
+              this.connectMongoDb(nconf);
           }, 10000);
         }
         else {
